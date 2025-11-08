@@ -1,6 +1,6 @@
 // Copyright (c) 2022 Cesanta Software Limited
 // All rights reserved
-// Changed by Larissa Pauser for ARM-Cortex M7
+// Changed by Larissa Pauser for STM32F746ZGT6
 
 int main(void) {
   return 0;
