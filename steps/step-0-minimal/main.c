@@ -1,5 +1,6 @@
 // Copyright (c) 2022 Cesanta Software Limited
 // All rights reserved
+// Changed by Larissa Pauser for ARM-Cortex M7
 
 int main(void) {
   return 0;
@@ -16,8 +17,11 @@ __attribute__((naked, noreturn)) void _reset(void) {
   for (;;) (void) 0;  // Infinite loop in the case if main() returns
 }
 
-extern void _estack(void);  // Defined in link.ld
+extern void _estack(void); //defined in link.ld
 
-// 16 standard and 91 STM32-specific handlers
-__attribute__((section(".vectors"))) void (*const tab[16 + 91])(void) = {
-    _estack, _reset};
+//16 standard and 98 specific interrupt handlers
+//define an array of 16+98 pointers to functions which return nothing and take 2 arguments
+//every such function is an interrupt request handler
+//this array is the vector table
+__attribute__((section(".vectors")))
+void (*tab[16+98])(void) = {_estack,_reset};
