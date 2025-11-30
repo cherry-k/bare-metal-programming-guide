@@ -1,1 +1,7 @@
 /**/build/
+
+steps/step-1-blinky/firmware.bin
+
+steps/step-1-blinky/firmware.elf
+
+steps/step-1-blinky/firmware.elf.map

@@ -1,6 +1,8 @@
 // Copyright (c) 2022 Cesanta Software Limited
 // All rights reserved
 // Changed by Larissa Pauser for STM32F746ZGT6
+#include <inttypes.h>
+#include <stdbool.h>
 
 #define BIT(x) (1UL << (x))
 // to address a specific pin at a specific bank, use a 16bit value, where the first byte is the bank and the second byte is the pin
