@@ -5,3 +5,9 @@ steps/step-1-blinky/firmware.bin
 steps/step-1-blinky/firmware.elf
 
 steps/step-1-blinky/firmware.elf.map
+
+steps/step-2-systick/firmware.bin
+
+*.elf
+
+*.map

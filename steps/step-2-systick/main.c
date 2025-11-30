@@ -10,7 +10,7 @@
 #define PINBANK(pin) (pin >> 8)
 
 struct systick {
-  volatile uint32_t CTRL, LOAD, VAL, CALIB;
+  volatile uint32_t CSR, RVR, CVR, CALIB;
 };
 #define SYSTICK ((struct systick *) 0xe000e010)  // 2.2.2
 
@@ -25,9 +25,9 @@ struct rcc {
 
 static inline void systick_init(uint32_t ticks) {
   if ((ticks - 1) > 0xffffff) return;  // Systick timer is 24 bit
-  SYSTICK->LOAD = ticks - 1;
-  SYSTICK->VAL = 0;
-  SYSTICK->CTRL = BIT(0) | BIT(1) | BIT(2);  // Enable systick
+  SYSTICK->RVR = ticks - 1;
+  SYSTICK->CVR = 0;	
+  SYSTICK->CSR = BIT(0) | BIT(1) | BIT(2);  // Enable systick
   RCC->APB2ENR |= BIT(14);                   // Enable SYSCFG
 }
 
@@ -101,5 +101,5 @@ __attribute__((naked, noreturn)) void _reset(void) {
 extern void _estack(void);  // Defined in link.ld
 
 // 16 standard and 91 STM32-specific handlers
-__attribute__((section(".vectors"))) void (*const tab[16 + 91])(void) = {
+__attribute__((section(".vectors"))) void (*const tab[16 + 98])(void) = {
     _estack, _reset, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, SysTick_Handler};
