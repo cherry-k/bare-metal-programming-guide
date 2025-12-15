@@ -11,3 +11,5 @@ steps/step-2-systick/firmware.bin
 *.elf
 
 *.map
+
+*.bin
